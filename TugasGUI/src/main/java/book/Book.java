@@ -1,14 +1,15 @@
 package book;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
-public class Book implements Serializable{
+public class Book implements Serializable {
     private String id;
     private String title;
     private String author;
     private String category;
     private int stock;
-    private int loanDuration; // Add this field
+    private LocalDate dueDate;
 
     public Book(String id, String title, String author, String category, int stock) {
         this.id = id;
@@ -24,11 +25,9 @@ public class Book implements Serializable{
         return id;
     }
 
-
     public String getTitle() {
         return title;
     }
-
 
     public String getAuthor() {
         return author;
@@ -46,7 +45,15 @@ public class Book implements Serializable{
         this.stock = stock;
     }
 
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
+
     public void setLoanDuration(int loanDuration) {
-        this.loanDuration = loanDuration;
+        this.dueDate = LocalDate.now().plusDays(loanDuration);
     }
 }

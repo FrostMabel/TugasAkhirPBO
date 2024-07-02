@@ -176,7 +176,8 @@ public class LibrarySystemGUI extends Application {
         Label borrowedBooksLabel = new Label("Borrowed Books:");
         ListView<String> borrowedBooksList = new ListView<>();
         for (Book book : student.getBorrowedBooks()) {
-            borrowedBooksList.getItems().add(book.getTitle());
+            String bookInfo = book.getTitle() + " (Due date: " + book.getDueDate() + ")";
+            borrowedBooksList.getItems().add(bookInfo);
         }
 
         Button backButton = new Button("Back");
@@ -188,6 +189,7 @@ public class LibrarySystemGUI extends Application {
 
         backButton.setOnAction(e -> showStudentMenu(primaryStage, student));
     }
+
 
     private void borrowBook(Stage primaryStage, Student student) {
         VBox borrowBookView = new VBox(10);
@@ -215,11 +217,11 @@ public class LibrarySystemGUI extends Application {
             if (selectedIndex != -1 && !loanDurationField.getText().isEmpty()) {
                 Book selectedBook = LibrarySystem.getAvailableBooks().get(selectedIndex);
                 int loanDuration = Integer.parseInt(loanDurationField.getText());
-                selectedBook.setLoanDuration(loanDuration);
+                selectedBook.setLoanDuration(loanDuration); // This will set the due date
                 student.borrowBook(selectedBook);
                 selectedBook.setStock(selectedBook.getStock() - 1);
                 LibrarySystem.saveData(); // Save data
-                showAlert(Alert.AlertType.INFORMATION, "Success", "Book borrowed successfully!");
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Book borrowed successfully! Due date: " + selectedBook.getDueDate());
                 showStudentMenu(primaryStage, student);
             } else {
                 showAlert(Alert.AlertType.ERROR, "Error", "Please select a book and enter a loan duration.");
@@ -228,6 +230,7 @@ public class LibrarySystemGUI extends Application {
 
         backButton.setOnAction(e -> showStudentMenu(primaryStage, student));
     }
+
 
     private void returnBook(Stage primaryStage, Student student) {
         VBox returnBookView = new VBox(10);

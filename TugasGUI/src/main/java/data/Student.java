@@ -6,7 +6,7 @@ import com.tugasgui.main.tugasgui.LibrarySystem;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Student implements Serializable{
+public class Student implements Serializable {
     private String name;
     private String nim;
     private String faculty;
