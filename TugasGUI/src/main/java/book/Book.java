@@ -19,7 +19,6 @@ public class Book implements Serializable {
         this.stock = stock;
     }
 
-    // Getters and setters for each field
 
     public String getId() {
         return id;

@@ -14,19 +14,14 @@ public class LibrarySystem {
     public static Admin admin;
 
     public static void initializeData() {
-        // Initialize some dummy data for testing purposes
         admin = new Admin("admin", "admin123");
 
-        // Load saved data if available
         loadData();
 
-        // If there's no saved data, add sample data
         if (studentList.isEmpty() && bookList.isEmpty()) {
-            // Add sample students
             studentList.add(new Student("Althaf", "202310370311062", "Engineering", "Computer Science"));
             studentList.add(new Student("Frost", "1", "Arts", "History"));
 
-            // Add sample books
             bookList.add(new Book("1", "Effective Java", "Joshua Bloch", "Programming", 10));
             bookList.add(new Book("2", "Clean Code", "Robert C. Martin", "Programming", 8));
             bookList.add(new Book("3", "Design Patterns", "Erich Gamma", "Software Engineering", 5));
@@ -47,7 +42,6 @@ public class LibrarySystem {
             studentList = (List<Student>) ois.readObject();
             bookList = (List<Book>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            // If file not found or other error, we ignore and use default data
             e.printStackTrace();
         }
     }

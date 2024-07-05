@@ -17,7 +17,6 @@ public class LibrarySystemGUI extends Application {
 
         LibrarySystem.initializeData();
 
-        // Main menu
         VBox mainMenu = new VBox(10);
         mainMenu.setPadding(new Insets(10));
 
@@ -71,6 +70,11 @@ public class LibrarySystemGUI extends Application {
         });
 
         backButton.setOnAction(e -> primaryStage.setScene(primaryStage.getScene()));
+
+        backButton.setOnAction(actionEvent -> {
+            primaryStage.close();
+            start(primaryStage);
+        });
     }
 
     private void showAdminLogin(Stage primaryStage) {
@@ -111,7 +115,7 @@ public class LibrarySystemGUI extends Application {
         VBox studentMenu = new VBox(10);
         studentMenu.setPadding(new Insets(10));
 
-        Label menuLabel = new Label("=== Student Menu ===");
+        Label menuLabel = new Label("Student Menu");
         Button viewBorrowedButton = new Button("View Borrowed Books");
         Button borrowBookButton = new Button("Borrow Book");
         Button returnBookButton = new Button("Return Book");
